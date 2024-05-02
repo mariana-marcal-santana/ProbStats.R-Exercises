@@ -8,7 +8,7 @@ countries <- c("United Arab Emirates", "Nepal", "Comoros", "Namibia")
 
 ggplot(subset(data, Continent %in% continents), aes(x = GDP, y = HCI, color = Continent)) +
   geom_point() +
-  geom_text(data = subset(data, Country %in% countries), aes(label = Country), hjust = 0, vjust = 0, size = 3) +
+  geom_text(data = subset(data, Country %in% countries), aes(label = Country), hjust = 0, vjust = 0, size = 3, show.legend = FALSE) +
   scale_x_log10() +
   labs(title = "HCI - GDP per capita",
        x = "GDP per capita (international dollars)",
