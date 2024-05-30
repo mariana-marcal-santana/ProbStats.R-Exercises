@@ -16,3 +16,24 @@ for (i in 1:n) {
 }
 
 proportion <- sound_alert_not_off/n # 0.26 ????
+
+
+aviso_sonoro_sem_desligamento <- 0
+n_desligamentos <- 0
+n <- 150
+set.seed(2255)
+
+
+for(i in 1:n) {
+  sinais <- sample(1:10, size = 9, replace = TRUE, prob = (1:10)/55)
+  # Verificar condições para aviso sonoro e desligamento
+  aviso_sonoro <- any(sinais == 2)
+  desligamento <- any(sinais == 1)
+  
+  if (!desligamento)  n_desligamentos = n_desligamentos + 1
+  if (aviso_sonoro & !desligamento) {
+    aviso_sonoro_sem_desligamento <- aviso_sonoro_sem_desligamento + 1
+  }
+}
+prop <- aviso_sonoro_sem_desligamento/n_desligamentos
+print(prop)
