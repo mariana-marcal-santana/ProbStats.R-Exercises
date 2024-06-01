@@ -12,45 +12,20 @@ class_limits <- seq(a, b, by = amplitude)
 # 2
 frequencias_obs <- table(cut(sample, breaks = class_limits))
 
-# até aqui faz sentido
-
 CDF <- function(x, a, b) {
   ifelse(x < a, 0,
-    ifelse(x < (a + b)/2, 2 * (((x - a)/(b - a)) ^ 2),
-      ifelse(x < b, 1 - 2 * (((b - x)/(b - a)) ^ 2), 1)))
+   ifelse(x < (a + b)/2, 2 * (((x - a)/(b - a)) ^ 2),
+    ifelse(x < b, 1 - 2 * (((b - x)/(b - a)) ^ 2), 1)))
 }
 
-intervals <- c(4.5, (a + b)/2, 13) # Intervalos de 4.5 a 8.75 e de 8.75 a 13
 # Calcular as frequências esperadas
 frequencias_esperadas <- diff(sapply(class_limits, function(x) CDF(x, a, b))) * 140
-# Imprimir as frequências esperadas
-print(frequencias_esperadas)
-
-
 
 # Teste de qui-quadrado
-qui_quadrado <- sum((frequencias_obs - frequencias_esperadas)^2 / frequencias_exp)
+qui_quadrado <- sum((frequencias_obs - frequencias_esperadas)^2 / frequencias_esperadas)
 
 # Graus de liberdade
 df <- k - 1
 
 # Valor-p
-valor_p <- 1 - pchisq(qui_quadrado, df)
-
-# Output
-print("Frequências observadas:")
-print(frequencias_obs)
-print("Frequências esperadas:")
-print(frequencias_esperadas)
-print("Estatística do teste de qui-quadrado:")
-print(qui_quadrado)
-print("Graus de liberdade:")
-print(df)
-print("Valor-p:")
-print(round(valor_p, 4))
-
-
-# Frequências esperadas sob H0 (distribuição triangular)
-prob_classe <- 2/(b-a)
-frequencias_exp <- rep(n * prob_classe, k)
-
+valor_p <- 1 - pchisq(qui_quadrado, df) # 0.5544
