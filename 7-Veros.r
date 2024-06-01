@@ -29,4 +29,4 @@ quantile_estimated <- quantile_function(p, theta_estimated, a)
 quantile_true <- quantile_function(p, 3.6, a)
 
 absolute_deviation <- abs(quantile_estimated - quantile_true)
-print(paste("Desvio absoluto:", round(absolute_deviation, 4)))
+print(paste("Desvio absoluto:", round(absolute_deviation, 4))) #0.3342
