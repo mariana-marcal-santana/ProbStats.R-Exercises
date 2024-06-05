@@ -15,4 +15,4 @@ for(i in 1:n) {
   if (som & !deslig) som_nao_deslig <- som_nao_deslig + 1
 }
 
-prop <- som_nao_deslig/nao_deslig
+prop <- som_nao_deslig/nao_deslig # 0.325
